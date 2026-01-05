@@ -14,7 +14,8 @@ console.log(tracks);
 // Pour cette fois, on va avoir besoin de promesses pour simuler nos appels vers une DB.
 // On va utiliser un ORM, Object-Relationnal Mapping, qui nous permettra de renvoyer des promesses sans avoir à les faire en Node API (je pense, je suis pas sûre)
 
-const getAlbums = (id) => {
+//* Fonction pour récupérer l'album dans la DB grâce à son id :
+const getAlbum = (id) => {
     return new Promise ((resolve, reject) => {
         // setTimeaout sert à simuler que la DB met du temps à répondre :
         // setTimeout(fonctionAExecuter, TempsEnMillisecondes) :
@@ -28,19 +29,41 @@ const getAlbums = (id) => {
 
             // On va simuler que la DB est peut-être en train de brûler (oui) :
             // On crée un nombre aléatoire entre 1 et 5, si c'est 3 c'est que ça crame :
-            if(Math.florr(Math.random() * 5 + 1 ) ===3) {
-                reject(new Error('La DB ne répond pas'))
+            if(Math.floor(Math.random() * 5 + 1 ) ===3) {
+                reject(new Error('[Album] La DB ne répond pas'))
             }
 
             // Et enfin, si tout s'est bien passé, on résout la requête et on envoie l'album trouvé :
             resolve(albumSearched)
         }, 1000); // = 1000 milisecondes
-    })
+    });
 }
 
-const getTracksOfAlbum = (idAlbum) => {
+//* Fonction pour récupérer les chansons sur l'album grâce à leurs id :
+const getTracksOfAlbum = (albumId) => {
+    return new Promise((resolve, reject) => {
+        // simulation de la requête qui prend du temps :
+        setTimeout(() => {
+            let foundTracks = tracks.filter(track => track.albumId === albumId);
+
+            // Si pas de chanson sur l'album :
+            if(!foundTracks.length) {
+                reject(new Error('Bizar, y a po de chanson sur cet album :O'))
+            }
+
+            // On va ENCORE simuler que la DB est peut-être en train de brûler :
+            if(Math.floor(Math.random() * 5 + 1 ) ===3) {
+                reject(new Error('[Tracks] La DB ne répond pas'))
+            }
+
+            // Si tout se passe bien :
+            resolve(foundTracks);
+        }, 1500)
+    });
 
 }
+
+// ! Maintrenant, on passe au main.js
 
 const addAlbum = (name, cover, tracks) => {
 
