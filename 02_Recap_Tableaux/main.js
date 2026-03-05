@@ -65,7 +65,11 @@ console.log(adminTasks);
 // Par exemple, si après on crée un if(!adminTasks) (qui veut dire "S'il n'y a pas de adminTasks"), le tableau adminTasks existera, mais vide, donc la condition sera biaisée.
 
     //*Tips : On se sert souvent du FILTER pour faire des suppressions en une fois :
-    //TODO rien compris, rien suivi
+console.clear();
+console.log('Suppression avec un filter :');
+console.log(tasks);
+tasks = tasks.filter( task => task.id !== 2);
+console.log(tasks);
 
 //? Modifier la structure d'un tableau :
 // = fonction qui renvoie un autre tableau, modifié ( = pas le tableau 1 modifié, mais une copie modifiée) :
@@ -131,7 +135,7 @@ const foodWords = ['patates', 'fenouil', 'tomate', 'oeufs'];
 const animalWords = ['chat', 'chien', 'cheval'];
 // Si je fais ça :
 const wordsFlop = foodWords + animalWords;
-console.log(wordsFlop); // Le résultat est une string de tous les mots, tout collés et moches.
+console.log(wordsFlop); // Le résultat est une concaténation en string de tous les mots, tout collés et moches.
 
 // Ou ça :
 const wordsMiFlop = foodWords.concat(animalWords);
@@ -142,6 +146,8 @@ const words = [...foodWords, ...animalWords];
 console.log(words); // ici, le résultat est le même qu'au-dessus mais plus propre, les ... récupèrent le contenu des tableaux, et les additionne. 
 // => ... peuvent servir à ADDITIONNER des  tableaux.
 
+// max accepte en paramètre des chiffres séparés par des ,
+// On va donc éclater (spread) notre tableau pour n'avoir que les chiffres dedans :
 // Les ... servent aussi à aller chercher des ÉLÉMENTS PARTICULIERS d'un tableau :
 const results = [12, 8, 9, 35, 13, 4, 6, 18];
 let max = Math.max(...results); // = aller chercher le nombre le plus haut du tableau.

@@ -1,5 +1,5 @@
 // ! Objet Error :
-// Il existe en JS un objet Error qui permet de créer une erreur avec un message perspnalisé. On s'en sert avec un mot cle qui s'appelle THROW qui servira à la "jeter".
+// Il existe en JS un objet Error qui permet de créer une erreur avec un message persnalisé. On s'en sert avec un mot cle qui s'appelle THROW qui servira à la "jeter".
 let myError = new Error("mon message personnbalisé");
 //console.log(myError);
 
@@ -12,7 +12,7 @@ const users = [
         lastname : 'Poveda',
         firstname : 'Caroline',
         email : 'pecorino@test.be',
-        password : 'Test1234=' // Le mdp ne ser ajamais noté en clair comme ça dans une DB, ici c'est juste pour l'exemple
+        password : 'Test1234=' // Le mdp ne sera jamais noté en clair comme ça dans une DB, ici c'est juste pour l'exemple
     },
     {id : 2,
     lastname : 'Le Chat',
@@ -54,14 +54,16 @@ const login = (email, password) => {
         throw new Error("Mauvais mot de passe");
     }
 
-    return userSearched; // Quand on sera en APi, on revnerra une version modifiée de l'utlisateur sans les données sensibles (mdp, mail...).
-    // = un DTO, Data Transfer Object = format que prendront les objets selo les cas de figure (mail non modifiable, infos cachées...).
+    return userSearched; // Quand on sera en APi, on renverra une version modifiée de l'utlisateur sans les données sensibles (mdp, mail...).
+    // = un DTO, Data Transfer Object = format que prendront les objets selon les cas de figure (mail non modifiable, infos cachées...).
+    console.log("On passera jamais par cette ligne c'est pour ça qu'elle est grisée");
 }
 
 // ! Si on utilise ces fonctions sans Try Catch, on ira pas bien loin :
 //* Cas où tout marche bien :
 console.log("Cas où tout marche bien :");
 console.log("Tentative de connexion :");
+
 let connectedUser = login("pecorino@test.be", "Test1234=");
 console.log(`Bienvenue ${connectedUser} !`);
 
@@ -72,7 +74,7 @@ console.log(`${connectedUser.firstname} et ${friendlyUser.firstname} sont mainte
 console.log();
 
 //* Cas où tout ne marche pas  bien :
-// console.log("Cas où tout marche PAS bien :");
+console.log("Cas où tout marche PAS bien :");
 // console.log("Tentative de connexion :");
 // let connectedUser2 = login("spongeBob@test.be", "Bob1234=");
 // console.log(`Bienvenue ${connectedUser2.firstname} !`);
